@@ -1,0 +1,284 @@
+Hierarchical Routing Algorithm 
+ 
+When network size is growing, the number of routers in the network will increase. 
+Therefore, the size of routing table increases, then routers cannot handle network traffic as 
+efficiently. To overcome this problem we are using hierarchical routing. 
+In hierarchical routing, routers are classified in groups called regions. Each router has 
+information about the routers in its own region and it has no information about routers in other 
+regions. So, routers save one record in their table for every other region. 
+For huge networks, a two-level hierarchy may be insufficient hence, it may be necessary to 
+group the regions into clusters, the clusters into zones, the zones into groups and so on. 
+Hierarchical routing is widely used in Internet routing and makes use of several routing 
+protocols. 
+ 
+Broadcast Routing 
+Sending a packet to all destinations simultaneously is called broadcasting. 
+Examples: 
+
+
+Weather reports, stock market updates, live radio programs etc., 
+Methods of broadcasting: 
+ Distinct Point to Point routing : A router creates a data packet and then sends it 
+to each host one by one. In this case, the router creates multiple copies of single 
+data packet with different destination addresses. All packets are sent as unicast 
+but because they are sent to all, it simulates as if router is broadcasting. 
+This method consumes lots of bandwidth and router must have a complete list 
+of all destinations. 
+ 
+ Flooding : When router receives a packet that is to be broadcasted, it simply 
+floods those packets out of all interfaces. All routers are configured in the same 
+way. This method is easy on router's CPU but may cause the problem of 
+duplicate packets received from peer routers. 
+ 
+ Multidestination Routing: Here each packet contains either a list of 
+destinations or a bit map indicating the desired destinations. When a packet 
+arrives at a router,the router checks all the destinations to determine the set of 
+output lines that will be needed.The router generates a new copy of the packet 
+for each output line to be used and includes in each packet only those 
+destinations that are to use the line. 
+ 
+ Spanning Tree :  Here we use sink treefor the router initiating the broadcast.  A 
+spanning tree is a subset of the subnet that includes all the routers but contains 
+no loops. 
+ 
+ Reverse path forwarding :  Reverse path forwarding is a technique, in which 
+router knows in advance about its predecessor from where it should receive 
+broadcast. This technique is used to detect and discard duplicates. 
+
+ 
+Multicast Routing 
+Multicast routing is special case of broadcast routing with significance difference and 
+challenges. In broadcast routing, packets are sent to all nodes even if they do not want 
+it. But in Multicast routing, the data is sent to only nodes which wants to receive the 
+packets. 
+ 
+The router must know that there are nodes, which wish to receive multicast packets (or 
+stream) then only it should forward. Multicast routing works spanning tree protocol to 
+avoid looping. 
+Multicast routing also uses reverse path Forwarding technique, to detect and discard 
+duplicates and loops. 
+Multicast Routing Protocols 
+Unicast routing protocols use graphs while Multicast routing protocols use trees, i.e. 
+spanning tree to avoid loops. The optimal tree is called shortest path spanning tree. 
+
+
+ DVMRP  - Distance Vector Multicast Routing Protocol 
+ MOSPF  - Multicast Open Shortest Path First 
+ CBT  - Core Based Tree 
+ PIM  - Protocol independent Multicast 
+Protocol Independent Multicast is commonly used now. It has two flavors: 
+ PIM Dense Mode 
+This mode uses source -based trees. It is used in dense environment such as 
+LAN. 
+ PIM Sparse Mode 
+This mode uses shared trees. It is used in sparse environment such as WAN. 
+ 
+Difference between Broadcast and Multicast :  
+ 
+S.No. Broadcast Multicast 
+1. It has one sender and multiple receivers. 
+It has one or more senders and 
+multiple receivers. 
+2. 
+It sent data from one device to all the 
+other devices in a network. 
+It sent data from one device to 
+multiple devices. 
+3. It works on star and bus topology. 
+It works on star, mesh, tree and 
+hybrid topology. 
+4. It scale well across large networks. 
+It does not scale well across 
+large networks. 
+5. Its bandwidth is wasted. It utilizes bandwidth efficiently. 
+6. It has one-to-all mapping. It has one-to-many mapping. 
+7. 
+Hub is an example of a broadcast 
+device. 
+Switch is an example of a 
+multicast device. 
+ 
+Routing for Mobile Hosts 
+
+ 
+Millions of people use computers while on go, from the truly mobile situations 
+with a wireless device in moving  cars, to nomadic situations in which laptop 
+computers are used in a series of a different location. We use the term mobile 
+hosts to mean either category, as distinct from stationary hosts that never 
+move. The mobile hosts introduce a new complication to r oute packets to the 
+mobile hosts, the network first has to find it.  
+Assumed model : 
+ 
+The model of the world that we will consider is one in which all hosts are 
+assumed to have a permanent home location that never changes. Each host 
+has a permanent home address that can be used to determine home location. 
+Like the telephone number 1 -212-5551212 indicates the United States (country 
+code 1) and Manhattan (212).  
+Feature : 
+ The basic idea used for mobile routing on the internet and cellular network is 
+for the mobile hosts to tell the host at the home location.  
+ This host, which acts on behalf of the mobile host called a home agent.  
+ Once it knows where the mobile host currently located, it can forward 
+packets so that they are delivered. The figure shows mobile ro uting in action. 
+ The local address called care -of address. 
+ Once it has this address it can tell its home agent where it is now. It does 
+this by sending registration message to home agent with care of address.  
+ 
+Description of Diagram :  
+ 
+The message is shown with a dashed line in the figure indicate that it is a 
+control message, not a data message. The sender sends a data packet to the 
+mobile host using its permanent address. This packet is routed by the network 
+to the host home location b ecause the home addresses belong there. It 
+encapsulates the packet with a new header and sends this bundle to the care -of 
+address. This mechanism is called tunneling. It is very important on the internet.  
+Diagram : 
+ 
+ 
+
+ 
+ 
+ When the encapsulated packet arrives at the care -of address, the mobile 
+host unwraps it and retrieves the packet from the sender.  
+ The overall route is called triangle routing because it way is circuitous if the 
+remote location is far from the home location.  
+ As part of the step, 4 send ers learns the current care -of address. 
+ Subsequent packets can be routed directly to the mobile host by tunneling 
+them to the care-of address (step 5) bypassing the home location.  
+ If connectivity lost for any reason as the mobile moves, the home address 
+can always be used to reach the mobile.  
+ 
+Mobile Ad hoc Network (MANET) Routing 
+In Mobile Ad hoc Network (MANET), nodes do not know the topology of their 
+network, instead they have to discover it by their own as the topology in the ad -
+hoc network is dynamic topology. The basic rules is that a new node whenever 
+enters into an ad -hoc network, must announce its arrival and presence and 
+should also listen to similar announcement broadcasts made by other mobile 
+nodes. 
+
+
+ 
+1. Pro-active routing protocols: 
+These are also known as table -driven routing protocols. Each mobile node 
+maintains a separate routing table which contains the information of the routes 
+to all the possible destination mobile nodes.  
+Since the topology in the mobile ad -hoc network is dynamic, these routing 
+tables are updated periodically as and when the network topology changes. It 
+has a limitation that is doesn’t work well for the large networks as the entries in 
+the routing table becomes too large since they need to maintain the  route 
+information to all possible nodes.  
+1. Destination Sequenced Distance Vector Routing Protocol (DSDV):  
+It is a pro-active/table driven routing protocol. It actually extends the distance 
+vector routing protocol of the wired networks as the name suggests. It is 
+based on the Bellman -ford routing algorithm. Distance vector routing 
+protocol was not suited for mobile ad -hoc networks due to count -to-infinity 
+problem. Hence, as a solution Destination Sequenced Distance Vector 
+Routing Protocol (DSDV) came into pic ture. 
+Destination sequence number is added with every routing entry in the routing 
+table maintained by each node. A node will include the new update in the 
+table only if the entry consists of the new updated route to the destination 
+with higher sequence nu mber. 
+2. Global State Routing (GSR):  
+It is a pro-active/table driven routing protocol. It actually extends the link 
+state routing of the wired networks. It is based on the Dijkstra’s routing 
+algorithm. Link state routing protocol was not suited for mobile ad -hoc 
+networks because in it, each node floods the link state routing information 
+directly into the whole network i.e. Global flooding which may lead to the 
+congestion of control packets in the network.  
+
+
+Hence, as a solution Global State Routing Routing Proto col (GSR) came into 
+the picture. Global state routing doesn’t flood the link state routing packets 
+globally into the network. In GSR, each of the mobile node maintains one list 
+and three tables namely, adjacency list, topology table, next hop table and 
+distance table. 
+2. Reactive routing protocols:  
+These are also known as on -demand routing protocol. In this type of routing, 
+the route is discovered only when it is required/needed. The process of route 
+discovery occurs by flooding the route request packets th roughout the mobile 
+network. It consists of two major phases namely, route discovery and route 
+maintenance. 
+1. Dynamic Source Routing protocol (DSR):  
+It is a reactive/on -demand routing protocol. In this type of routing, the route 
+is discovered only when it is  required/needed. The process of route 
+discovery occurs by flooding the route request packets throughout the 
+mobile network.  
+It consists of two phases:  
+ Route Discovery:  
+This phase determines the most optimal path for the transmission of data 
+packets between the source and the destination mobile nodes.  
+ Route Maintenance:  
+This phase performs the maintenance work of the route as the topology in 
+the mobile ad-hoc network is dynamic in nature and hence, there are 
+many cases of link breakage resulting in the netw ork failure between the 
+mobile nodes. 
+ 
+2. Ad-Hoc On Demand Vector Routing protocol (AODV):  
+It is a reactive/on -demand routing protocol. It is an extension of dynamic 
+source routing protocol (DSR) and it helps to remove the disadvantage of 
+dynamic source routi ng protocol. In DSR, after route discovery, when the 
+source mobile node sends the data packet to the destination mobile 
+node, it also contains the complete path in its header. Hence, as the 
+network size increases, the length of the complete path also incre ases 
+and the data packet’s header size also increases which makes the whole 
+network slow. 
+Hence, Ad-Hoc On Demand Vector Routing protocol came as solution to it. 
+The main difference lies in the way of storing the path, AODV stores the path 
+in the routing table whereas DSR stores it in the data packet’s header itself. 
+It also operates in two phases in the similar fashion: Route discovery and 
+Route maintenance.  
+
+3. Hybrid Routing protocol: 
+It basically combines the advantages of both, reactive and pro -active 
+routing protocols. These protocols are adaptive in nature and adapts 
+according to the zone and position of the source and destination mobile 
+nodes. One of the most popular hybrid routing  protocol is Zone Routing 
+Protocol (ZRP). 
+The whole network is divided into different zones and then the position of 
+source and destination mobile node is observed. If the source and destination 
+mobile nodes are present in the same zone, then proactive rou ting is used for 
+the transmission of the data packets between them. And if the source and 
+destination mobile nodes are present in different zones, then reactive routing is 
+used for the transmission of the data packets between them.  
+ 
+Anycast Routing : 
+A packet is delivered to the nearest member of a group, in 
+anycast. Anycast routing finds these paths. Sometimes nodes 
+provide a service, such as time of day or content distribution for 
+which it is getting the right information all that matters, not the 
+node that is contacted; any node will do. For example, anycast 
+is used in the internet as part of  DNS. 
+Topology : Regular distance vector and link state routing can 
+produce anycast routes because there is no need to devise new 
+routing schemes for anycast. Suppose we want to anycast to the 
+members of group 1. They will be given the address “1”, 
+instead of different addresses.  Distance vector routing will 
+distribute vectors as usual, and nodes will choose the shortest 
+path to destination 1. This will result in nodes sending to the 
+nearest instance of destination 1. That is, it believes that  all the 
+instances of node 1 are the same node . 
+
+ 
+This procedure works for link state routing as well, although 
+there is the added consideration that the routing protocol must 
+not find seemingly short paths that pass through node 1. This 
+would result in jumps through hyperspace, since the instances 
+of node 1 are really nodes located in different parts of the 
+network. 
+Advantages of Anycast Routing:  
+1. It provides intrinsic DDoS mitigation so that during failure 
+it provides failover alternatives.  
+2. A single DNS server configuration can be distributed to all 
+of your network nodes.  
+3. It provides faster connection by decreasing the number of 
+hops and reducing latency.  
+4. Load balancing can be utilized easily.  
+Disadvantages of Anycast Routing:  
+
+
+1. It requires additional hardware and proper traffic routing 
+to implement IP Anycast.  
+2. It requires higher maintenance co st for managing route 
+announcements. 
+ 
+ 
